@@ -103,10 +103,126 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
+<!--        BDD Cucumber Dependencies-->
+<!--        cucumber-->
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>7.4.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.4.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm-deps -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-jvm-deps</artifactId>
+            <version>1.0.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>23.0.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.4.1</version>
+<!--            <scope>test</scope>-->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.4.1</version>
+        </dependency>
+<!--***********************-->
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-html -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-html</artifactId>
+            <version>0.2.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>7.4.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.31</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.sourceforge.cobertura/cobertura -->
+        <dependency>
+            <groupId>net.sourceforge.cobertura</groupId>
+            <artifactId>cobertura</artifactId>
+            <version>2.1.1</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun</groupId>
+                    <artifactId>tools</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.7.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>maven-cucumber-reporting</artifactId>
+            <version>5.7.1</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-core -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <!--            Extent Report with Cucumber-->
+
+        <!-- https://mvnrepository.com/artifact/com.vimalselvam/cucumber-extentsreport -->
+        <dependency>
+            <groupId>com.vimalselvam</groupId>
+            <artifactId>cucumber-extentsreport</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+<!--***********************-->
+
     </dependencies>
     <build>
         <plugins>
-            <!--            https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html-->
+            <!--        https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -114,12 +230,11 @@
                 <configuration>
                     <source>11</source>
                     <target>11</target>
-
                     <!--                    <release>16</release>-->
                     <fork>true</fork>
                     <compilerArgs>
                         <!--                            If JDK 11 then comment below line-->
-                        <!--                                                <arg>&#45;&#45;enable-preview</arg>-->
+                        <!--                        <arg>&#45;&#45;enable-preview</arg>-->
                         <arg>-Xlint:all</arg>
                         <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
                         <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
@@ -147,28 +262,98 @@
                         </path>
                     </annotationProcessorPaths>
 
+
                 </configuration>
             </plugin>
-            <!--            https://maven.apache.org/surefire/maven-surefire-plugin/usage.html-->
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M7</version>
+                <version>3.0.0-M5</version>
                 <configuration>
-                    <!--                    TestNG HTTP Error Handling Purpose-->
+                    <!-- TestNG http Error Handle purpose -->
                     <systemPropertyVariables>
                         <testng.dtd.http>true</testng.dtd.http>
                     </systemPropertyVariables>
-                    <!--                    Test fail will be ignored-->
+                    <!-- Test Fail will be Ignored -->
                     <testFailureIgnore>true</testFailureIgnore>
-                    <!--                    Test Runner Files-->
+                    <!--Test Runner Files-->
+                    <includes>
+                        <include>**/TestRunner.java</include>
+                        <!--                        <include>**/AmazonRegressionTestRunner.java</include>-->
+                        <!--                        <include>**/AmazonSmokeTestRunner.java</include>-->
+                    </includes>
                     <suiteXmlFiles>
-                        <suiteXmlFile>target/test-classes/amazonTestRunner.xml</suiteXmlFile>
-                        <!--                        <suiteXmlFile>target/test-classes/EbayTestRunner.xml</suiteXmlFile>-->
+                        <suiteXmlFile>target/test-classes/AmazonRegressionTestRunner.xml</suiteXmlFile>
+                        <!--                        <suiteXmlFile>target/test-classes/AmazonSmokeTestRunner.xml</suiteXmlFile>-->
+                        <!--                        <suiteXmlFile>target/test-classes/AmazonTestRunner.xml</suiteXmlFile>-->
+
+
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
+
+
+
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.6.1</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <!--                        <phase>test</phase>-->
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+
+                        <configuration>
+                            <projectName>BDD-AutomationTestSuite</projectName>
+                            <buildNumber>1</buildNumber>
+                            <skip>false</skip>
+                            <outputDirectory>${project.build.directory}/cucumber-reports/advanced-reports
+                            </outputDirectory>
+                            <!--                            Custom Path for Reports-->
+                            <!--                            <outputDirectory>BG-TestAutomation-Reports</outputDirectory>-->
+
+                            <!--   <cucumberOutput>${project.build.directory}/cucumber-reports/cucumber-report.json</cucumberOutput>-->
+                            <!--     <outputDirectory>target/cucumber-reports/cucumber-report-html</outputDirectory>-->
+
+                            <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
+                            <jsonFiles>
+                                <param>**/*.json</param>
+                            </jsonFiles>
+                            <!-- optional, defaults to outputDirectory if not specified -->
+                            <classificationDirectory>${project.build.directory}/classifications
+                            </classificationDirectory>
+                            <classificationFiles>
+                                <!-- supports wildcard or name pattern -->
+                                <param>sample.properties</param>
+                                <param>other.properties</param>
+                            </classificationFiles>
+                            <!--                            <parallelTesting>false</parallelTesting>-->
+                            <!-- optional, set true to group features by its Ids -->
+                            <mergeFeaturesById>false</mergeFeaturesById>
+                            <!-- optional, set true to get a final report with latest results of the same test from different test runs -->
+                            <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
+                            <!-- optional, set true to fail build on test failures -->
+                            <checkBuildResult>false</checkBuildResult>
+                            <classificationDirectory>${project.build.directory}/cucumber-reports
+                            </classificationDirectory>
+                            <checkBuildResult>false</checkBuildResult>
+                        </configuration>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+
         </plugins>
+
+
     </build>
+
 
 </project>
